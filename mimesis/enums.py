@@ -89,6 +89,46 @@ class TLDType(Enum):
     STLD = 'stld'
 
 
+class SecondLDType(Enum):
+    """Provides second level domain types.
+
+    An argument for :meth:`~mimesis.Internet.second_level_domain()`.
+    """
+
+    CC2LD = 'cc2ld'
+    BUSINESS_NAME_2LD = 'businesss_name_2ld'  # DEV NOTE: via mimesis.Business
+    PRODUCT_NAME_2LD = 'product_name_2ld'
+    SERVICE_NAME_2LD = 'service_name_2ld'
+    PERSON_NAME_2LD = 'person_name_2ld'  # DEV NOTE: via mimesis.Person
+
+
+class ThirdLDType(Enum):
+    """Provides third level domain types.
+
+    An argument for :meth:`~mimesis.Internet.third_level_domain()`.
+    """
+
+    # DEV NOTE: account for 2ld and 3ld which can be same e.g. X.uk, X.co.uk
+    CC3LD = 'cc3ld'
+    BUSINESS_NAME_3LD = 'businesss_name_3ld'  # DEV NOTE: via mimesis.Business
+    PRODUCT_NAME_3LD = 'product_name_3ld'
+    SERVICE_NAME_3LD = 'service_name_3ld'
+    PERSON_NAME_3LD = 'person_name_3ld'  # DEV NOTE: via mimesis.Person
+    SERVER_TYPE_3LD = 'server_type_3ld'
+    DESCRIPTOR_3LD = 'descriptor_3ld'
+    HOST_SERVER_3LD = 'host_server_3ld'
+
+
+class FourthLDType(Enum):
+    """Provides fourth level domain types.
+
+    An argument for :meth:`~mimesis.Internet.fourth_level_domain()`.
+    """
+
+    # DEV NOTE: check for final lowest-level domain in full domain as host
+    HOST_SERVER_4LD = 'host_server_4ld'
+
+
 class Layer(Enum):
     """Provides network protocol layers.
 
