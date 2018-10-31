@@ -1326,6 +1326,30 @@ TLD = {
     ],
 }
 
+LOWEST_LEVEL_DOMAIN = {
+    'host_server_lld': [
+        'www.',
+        'ftp.',
+        ],
+    'host_server_multiple_lld': [
+        'www1.',
+        'www2.',
+        'www3.',
+        'ftp1.',
+        'ftp2.',
+        'ftp3.',
+        ],
+    'descriptor_lld': [
+        'support.',
+        'mail.',
+        'members.',
+        'news.',
+        'forum.',
+        'home.',
+        'app.',
+        ],
+}
+
 EMAIL_DOMAINS = (
     '@gmail.com',
     '@yandex.com',

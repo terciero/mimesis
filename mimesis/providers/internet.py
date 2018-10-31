@@ -6,9 +6,9 @@ from ipaddress import IPv6Address
 from typing import List, Optional, Union
 
 from mimesis.data import (EMOJI, HASHTAGS, HTTP_METHODS, HTTP_STATUS_CODES,
-                          HTTP_STATUS_MSGS, NETWORK_PROTOCOLS, SUBREDDITS,
-                          SUBREDDITS_NSFW, TLD, TORRENT_CATEGORIES,
-                          USER_AGENTS, USERNAMES)
+                          HTTP_STATUS_MSGS, LOWEST_LEVEL_DOMAINS,
+                          NETWORK_PROTOCOLS, SUBREDDITS, SUBREDDITS_NSFW, TLD,
+                          TORRENT_CATEGORIES, USER_AGENTS, USERNAMES)
 from mimesis.enums import (FourthLDType, Layer, MimeType, PortRange,
                            SecondLDType, ThirdLDType, TLDType)
 from mimesis.exceptions import NonEnumerableError
