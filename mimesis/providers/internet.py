@@ -7,18 +7,12 @@ import urllib.request
 from ipaddress import IPv4Address, IPv6Address
 from typing import List, Optional, Union
 
-from mimesis.data import (
-    EMOJI,
-    HASHTAGS,
-    HTTP_METHODS,
-    HTTP_STATUS_CODES,
-    HTTP_STATUS_MSGS,
-    NETWORK_PROTOCOLS,
-    TLD,
-    USER_AGENTS,
-    USERNAMES,
-)
-from mimesis.enums import Layer, MimeType, PortRange, TLDType
+from mimesis.data import (EMOJI, HASHTAGS, HTTP_METHODS, HTTP_STATUS_CODES,
+                          HTTP_STATUS_MSGS, LOWEST_LEVEL_DOMAINS,
+                          NETWORK_PROTOCOLS, SUBREDDITS, SUBREDDITS_NSFW, TLD,
+                          TORRENT_CATEGORIES, USER_AGENTS, USERNAMES)
+from mimesis.enums import (FourthLDType, Layer, MimeType, PortRange,
+                           SecondLDType, ThirdLDType, TLDType)
 from mimesis.exceptions import NonEnumerableError
 from mimesis.providers.base import BaseProvider
 from mimesis.providers.file import File
@@ -263,6 +257,74 @@ class Internet(BaseProvider):
         """
         key = self._validate_enum(item=tld_type, enum=TLDType)
         return self.random.choice(TLD[key])
+
+    # DEV NOTE: new, amend
+    def second_level_domain(self, secondld_type: Optional[SecondLDType] = None,
+                            ) -> str:
+        """Return random second level domain.
+
+        :param secondld_type: Enum object DomainType
+        :return: Second level domain.
+        :raises NonEnumerableError: if secondld_type not in DomainType.
+        """
+        key = self._validate_enum(item=secondld_type, enum=SecondLDType)
+        return self.random.choice(SecondLD[key])
+
+    # DEV NOTE: new, amend
+    def third_level_domain(self,
+                           thirdld_type: Optional[ThirdLDType] = None) -> str:
+        """Return random third level domain.
+
+        :param thirdld_type: Enum object DomainType
+        :return: Third level domain.
+        :raises NonEnumerableError: if thirdld_type not in DomainType.
+        """
+        key = self._validate_enum(item=thirdld_type, enum=ThirdLDType)
+        return self.random.choice(ThirdLD[key])
+
+    # DEV NOTE: new, amend
+    def fourth_level_domain(self, fourthld_type: Optional[FourthLDType] = None,
+                            ) -> str:
+        """Return random fourth level domain.
+
+        :param fourthld_type: Enum object DomainType
+        :return: Fourth level domain.
+        :raises NonEnumerableError: if fourthld_type not in DomainType.
+        """
+        key = self._validate_enum(item=fourthld_type, enum=FourthLDType)
+        return self.random.choice(FourthLD[key])
+
+    # DEV NOTE: new, amend FullLD. use term subdomains which mean non-TLD.
+    def full_domain(self) -> str:
+        """Return random fully-qualified domain of X levels.
+
+        :param fulld_type: object DomainType
+        :return: Fully-qualified domain.
+        """
+        # DEV NOTE: use X_level_domain() methods in random combo.
+        return None
+
+    def subreddit(self, nsfw: bool = False,
+                  full_url: bool = False) -> str:
+        """Get a random subreddit from the list.
+
+        :param nsfw: NSFW subreddit.
+        :param full_url: Full URL address.
+        :return: Subreddit or URL to subreddit.
+
+        :Example:
+            https://www.reddit.com/r/flask/
+        """
+        url = 'http://www.reddit.com'
+        if not nsfw:
+            if not full_url:
+                return self.random.choice(SUBREDDITS)
+            else:
+                return url + self.random.choice(SUBREDDITS)
+
+        nsfw_sr = self.random.choice(SUBREDDITS_NSFW)
+        result = url + nsfw_sr if full_url else nsfw_sr
+        return result
 
     def user_agent(self) -> str:
         """Get a random user agent.
