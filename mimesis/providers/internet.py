@@ -8,9 +8,9 @@ from ipaddress import IPv4Address, IPv6Address
 from typing import List, Optional, Union
 
 from mimesis.data import (EMOJI, HASHTAGS, HTTP_METHODS, HTTP_STATUS_CODES,
-                          HTTP_STATUS_MSGS, LOWEST_LEVEL_DOMAINS,
-                          NETWORK_PROTOCOLS, SUBREDDITS, SUBREDDITS_NSFW, TLD,
-                          TORRENT_CATEGORIES, USER_AGENTS, USERNAMES)
+                          HTTP_STATUS_MSGS, LOWEST_LEVEL_DOMAIN,
+                          NETWORK_PROTOCOLS, TLD, SECONDLD,
+                          USER_AGENTS, USERNAMES)
 from mimesis.enums import (FourthLDType, Layer, MimeType, PortRange,
                            SecondLDType, ThirdLDType, TLDType)
 from mimesis.exceptions import NonEnumerableError
@@ -259,8 +259,7 @@ class Internet(BaseProvider):
         return self.random.choice(TLD[key])
 
     # DEV NOTE: new, amend
-    def second_level_domain(self, secondld_type: Optional[SecondLDType] = None,
-                            ) -> str:
+    def second_level_domain(self, secondld_type: Optional[SecondLDType] = None,) -> str:
         """Return random second level domain.
 
         :param secondld_type: Enum object DomainType
@@ -268,7 +267,7 @@ class Internet(BaseProvider):
         :raises NonEnumerableError: if secondld_type not in DomainType.
         """
         key = self._validate_enum(item=secondld_type, enum=SecondLDType)
-        return self.random.choice(SecondLD[key])
+        return self.random.choice(SECONDLD[key])
 
     # DEV NOTE: new, amend
     def third_level_domain(self,

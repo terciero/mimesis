@@ -96,12 +96,11 @@ class SecondLDType(Enum):
 
     An argument for :meth:`~mimesis.Internet.second_level_domain()`.
     """
-
     CC2LD = 'cc2ld'
-    BUSINESS_NAME_2LD = 'businesss_name_2ld'  # DEV NOTE: via mimesis.Business
-    PRODUCT_NAME_2LD = 'product_name_2ld'
-    SERVICE_NAME_2LD = 'service_name_2ld'
-    PERSON_NAME_2LD = 'person_name_2ld'  # DEV NOTE: via mimesis.Person
+    # BUSINESS_NAME_2LD = 'businesss_name_2ld'  # DEV NOTE: via mimesis.Business
+    # PRODUCT_NAME_2LD = 'product_name_2ld'
+    # SERVICE_NAME_2LD = 'service_name_2ld'
+    # PERSON_NAME_2LD = 'person_name_2ld'  # DEV NOTE: via mimesis.Person
 
 
 class ThirdLDType(Enum):
